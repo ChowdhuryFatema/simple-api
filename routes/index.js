@@ -41,6 +41,16 @@ router.put('/api/items/:id', (req, res) => {
   res.status(200).json(item);
 });
 
+// Delete Item API
+router.delete('/api/items/:id', (req, res) => {
+  const item = items.find(i => i.id === parseInt(req.params.id));
+  if (item) {
+    res.json({ items: items.filter(i => i.id !== parseInt(req.params.id)) });
+  } else {
+    res.status(204).send('');
+  }
+
+})
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
