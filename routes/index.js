@@ -21,10 +21,13 @@ router.get('/api/items/:id', (req, res) => {
 })
 
 // Post Item
-// router.post('/api/items', (req, res) => {
-//   const { name, price } = req.body;
-//   if(!name || !price) return res.status(404).send('')
-// })
+router.post('/api/items', (req, res) => {
+  const { name, price } = req.body;
+  if(!name || !price) return res.status(404).send('Invalid request');
+  const newItem = { id: items.length + 1, name, price }
+  items.push(newItem);
+  res.status(201).json(newItem);
+})
 
 
 
